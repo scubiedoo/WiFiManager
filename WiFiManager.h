@@ -110,6 +110,8 @@ class WiFiManager
     //if this is true, remove duplicated Access Points - defaut true
     void          setRemoveDuplicateAPs(boolean removeDuplicates);
 
+    // preset WiFi credentials before falling back on saved data
+    void          setConnectionCredentials(String ssid, String passwd);
   private:
     std::unique_ptr<DNSServer>        dnsServer;
     std::unique_ptr<ESP8266WebServer> server;

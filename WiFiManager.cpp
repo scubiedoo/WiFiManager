@@ -131,6 +131,12 @@ void WiFiManager::setupConfigPortal() {
 
 }
 
+void WiFiManager::setConnectionCredentials(String ssid, String passwd)
+{
+  _ssid = ssid;
+  _pass = passwd;
+}
+
 boolean WiFiManager::autoConnect() {
   String ssid = "ESP" + String(ESP.getChipId());
   return autoConnect(ssid.c_str(), NULL);
@@ -147,7 +153,7 @@ boolean WiFiManager::autoConnect(char const *apName, char const *apPassword) {
   // attempt to connect; should it fail, fall back to AP
   WiFi.mode(WIFI_STA);
 
-  if (connectWifi("", "") == WL_CONNECTED)   {
+  if (connectWifi(_ssid, _pass) == WL_CONNECTED)   {
     DEBUG_WM(F("IP Address:"));
     DEBUG_WM(WiFi.localIP());
     //connected
